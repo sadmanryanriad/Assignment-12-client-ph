@@ -1,15 +1,17 @@
-import { Outlet } from 'react-router-dom';
-import Navbar from '../shared/Navbar';
-import Footer from '../shared/Footer';
+import { Outlet } from "react-router-dom";
+import Navbar from "../shared/Navbar";
+import Footer from "../shared/Footer";
+import { Toaster } from "react-hot-toast";
 
 const Root = () => {
-    return (
-        <div>
-            <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer>
-        </div>
-    );
+  return (
+    <div>
+      <Navbar></Navbar>
+      <Outlet></Outlet>
+      <Footer></Footer>
+      <Toaster position="top-right" reverseOrder={false} />
+    </div>
+  );
 };
 
 export default Root;

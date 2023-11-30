@@ -1,55 +1,62 @@
-import { FaFacebook, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { useContext } from "react";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import SocialLogin from "./SocialLogin";
 
-const handleButton = ()=>{
-    console.log("button clicked");
-}
+const Login = () => {
+  const navigate = useNavigate("/");
+  const { login } = useContext(AuthContext);
 
-const handleSubmit = e =>{
+  const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
-}
+    if (
+      !/^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;<>,.?/~\\-]).{6,}$/.test(password)
+    ) {
+      toast.error(
+        "Password must have 6 character, a capital and a special character."
+      );
+      return;
+    }
 
-const Login = () => {
+    login(email, password)
+      .then(() => {
+        toast.success("log in successful");
+        navigate("/");
+        window.location.reload();
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-top bg-gray-300 md:pt-10">
-      <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
+    <div className="min-h-screen flex flex-col items-center justify-top md:pt-10">
+      <div className="flex flex-col dark:bg-slate-500 dark:text-gray-800 shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
         <div className="font-medium self-center text-xl sm:text-2xl uppercase text-gray-800">
           Login To Your Account
         </div>
-        <button onClick={handleButton} className="relative mt-6 border rounded-md py-2 text-sm text-gray-800 bg-gray-100 hover:bg-gray-200">
-          <span className="absolute left-0 top-0 flex items-center justify-center h-full w-10 text-2xl">
-            <FaGoogle></FaGoogle>
-          </span>
-          <span>Login with Google</span>
-        </button>
-        <button onClick={handleButton} className="relative mt-6 border rounded-md py-2 text-sm text-gray-800 bg-gray-100 hover:bg-gray-200">
-          <span className="absolute left-0 top-0 flex items-center justify-center h-full w-10 text-2xl">
-            <FaFacebook></FaFacebook>
-          </span>
-          <span>Login with Facebook</span>
-        </button>
-        <div className="relative mt-10 h-px bg-gray-300">
+        <SocialLogin></SocialLogin>
+        <div className="relative mt-10 h-px ">
           <div className="absolute left-0 top-0 flex justify-center w-full -mt-2">
-            <span className="bg-white px-4 text-xs text-gray-500 uppercase">
+            <span className=" px-4 text-xs text-gray-800 uppercase font-semibold">
               Or Login With Email
             </span>
           </div>
         </div>
         <div className="mt-10">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleLogin}>
             <div className="flex flex-col mb-6">
               <label
                 type="email"
-                className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
+                className="mb-1 text-xs sm:text-sm tracking-wide text-gray-800"
               >
                 E-Mail Address:
               </label>
               <div className="relative">
-                <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+                <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-green-400">
                   <svg
                     className="h-6 w-6"
                     fill="none"
@@ -68,7 +75,7 @@ const Login = () => {
                   type="email"
                   name="email"
                   required
-                  className="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+                  className="text-sm sm:text-base placeholder-gray-800 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-green-400 dark:bg-slate-400 "
                   placeholder="E-Mail Address"
                 />
               </div>
@@ -76,12 +83,12 @@ const Login = () => {
             <div className="flex flex-col mb-6">
               <label
                 type="password"
-                className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
+                className="mb-1 text-xs sm:text-sm tracking-wide text-gray-800"
               >
                 Password:
               </label>
               <div className="relative">
-                <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+                <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-green-400">
                   <span>
                     <svg
                       className="h-6 w-6"
@@ -102,7 +109,7 @@ const Login = () => {
                   type="password"
                   name="password"
                   required
-                  className="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+                  className="text-sm sm:text-base placeholder-gray-800 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-green-400 dark:bg-slate-400 "
                   placeholder="Password"
                 />
               </div>
@@ -112,7 +119,7 @@ const Login = () => {
               <div className="flex ml-auto">
                 <a
                   href="#"
-                  className="inline-flex text-xs sm:text-sm text-blue-500 hover:text-blue-700"
+                  className="inline-flex text-xs sm:text-sm text-green-500 hover:text-green-700"
                 >
                   Forgot Your Password?
                 </a>
@@ -122,7 +129,7 @@ const Login = () => {
             <div className="flex w-full">
               <button
                 type="submit"
-                className="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-600 hover:bg-blue-700 rounded py-2 w-full transition duration-150 ease-in"
+                className="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-green-600 hover:bg-green-700 rounded py-2 w-full transition duration-150 ease-in"
               >
                 <span className="mr-2 uppercase">Login</span>
                 <span>
@@ -144,8 +151,8 @@ const Login = () => {
         </div>
         <div className="flex justify-center items-center mt-6">
           <Link
-            to={'/registration'}
-            className="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center"
+            to={"/registration"}
+            className="inline-flex items-center font-bold text-green-500 hover:text-green-700 text-xs text-center"
           >
             <span>
               <svg
