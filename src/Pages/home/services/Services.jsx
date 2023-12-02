@@ -1,3 +1,4 @@
+import Heading from "../../../components/Heading";
 import ServiceCard from "./ServiceCard";
 
 
@@ -50,10 +51,8 @@ const services = [
 
   const Services = () => {
     return (
-      <div id="services" className="max-w-7xl mx-auto px-3 pt-16 md:pt-24">
-        <h2 className="text-3xl md:text-5xl font-bold mb-6 md:mb-12 text-center dark:text-slate-300">
-          Services
-        </h2>
+      <div id="services" className="max-w-7xl mx-auto px-3 pt-16 pb-16 md:pt-24">
+        <Heading>Services</Heading>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {services.map((service) => (
             <ServiceCard

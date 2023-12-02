@@ -1,4 +1,6 @@
 import Banner from "./Banner";
+import LatestUpdates from "./latestUpdates/LatestUpdates";
+import NewsLetter from "./newsLetter/newsletter";
 import Services from "./services/Services";
 import TestimonialsSlider from "./testimonial/TestimonialsSlider";
 
@@ -8,6 +10,8 @@ const Home = () => {
       <Banner></Banner>
       <Services></Services>
       <TestimonialsSlider></TestimonialsSlider>
+      <LatestUpdates></LatestUpdates>
+      <NewsLetter></NewsLetter>
     </>
   );
 };

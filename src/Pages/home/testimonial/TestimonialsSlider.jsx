@@ -2,6 +2,7 @@
 import { useCallback, useRef } from "react";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Heading from "../../../components/Heading";
 
 const Testimonial = () => {
   const sliderRef = useRef(null);
@@ -18,7 +19,8 @@ const Testimonial = () => {
 
   return (
     <>
-      <section className="pb-20 overflow-hidden px-3 md:px-0 pt-20 dark:bg-dark lg:pb-[120px] lg:pt-[120px]">
+    <Heading>Testimonials</Heading>
+      <section className="pb-10 overflow-hidden px-3 md:px-0 pt-20 dark:bg-dark lg:pb-10 lg:pt-10">
         <div className="container mx-auto">
           <Swiper slidesPerView={1} ref={sliderRef}>
             <SwiperSlide>
