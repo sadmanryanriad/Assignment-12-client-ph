@@ -26,8 +26,6 @@ const Testimonial = () => {
             <SwiperSlide>
               <SingleTestimonial
                 image="https://i.ibb.co/VLSY3jC/istockphoto-615279718-612x612.jpg"
-                reviewImg="https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/lineicon.svg"
-                reviewAlt="lineicon"
                 details="Our experience with the employee management platform has been outstanding! It provides innovative solutions that have greatly improved our organizational efficiency. The platform's user-friendly interface and robust features have made a significant impact on our HR processes."
                 name="Alice Johnson"
                 position="Human Resources Manager"
@@ -36,8 +34,6 @@ const Testimonial = () => {
             <SwiperSlide>
               <SingleTestimonial
                 image="https://i.ibb.co/MhVhcm1/360-F-193562494-u-Zu3hsw-S738-Ziuypu-Rl2o-ID4g-M7mm-AHX.jpg"
-                reviewImg="https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/lineicon.svg"
-                reviewAlt="lineicon"
                 details="Using the employee management platform has been a game-changer for our team! It offers unparalleled features that have significantly enhanced our workflow and collaboration. As a software developer, I appreciate the platform's efficiency and effectiveness in managing tasks and boosting overall employee engagement."
                 name="Bob Miller"
                 position="Team Lead, Software Development"
