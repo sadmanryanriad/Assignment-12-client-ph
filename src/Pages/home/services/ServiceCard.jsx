@@ -12,7 +12,7 @@ const ServiceCard = ({ id, title, image }) => {
     transition transform hover:-translate-y-1 hover:shadow-xl"
     >
       <img src={image} alt={title} className="w-48 h-32 rounded-md mx-auto mb-2" />
-      <div className="text-lg dark:text-white font-semibold group-hover:text-orange-400">
+      <div className="text-lg dark:text-white font-semibold group-hover:text-green-400">
         {title}
       </div>
     </div>

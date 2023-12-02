@@ -16,7 +16,6 @@ const LatestUpdates = () => {
       date: 'January 10, 2024',
       link: '/updates/webinar-collaboration',
     },
-    // Add more updates as needed
   ];
 
   return (
