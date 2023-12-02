@@ -1,9 +1,13 @@
+import Banner from "./Banner";
+import Services from "./services/Services";
+import TestimonialsSlider from "./testimonial/TestimonialsSlider";
+
 const Home = () => {
   return (
     <>
-      <h1 className="flex justify-center items-center h-screen text-6xl">
-        Vite + React
-      </h1>
+      <Banner></Banner>
+      <Services></Services>
+      <TestimonialsSlider></TestimonialsSlider>
     </>
   );
 };
