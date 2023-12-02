@@ -18,22 +18,22 @@ const menu = (
     </li>
     <li>
       <NavLink
-        to="/registration"
+        to="/dashboard"
         className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? "active" : ""
         }
       >
-        Registration
+        Dashboard
       </NavLink>
     </li>
     <li>
       <NavLink
-        to="/login"
+        to="/contact-us"
         className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? "active" : ""
         }
       >
-        Login
+        Contact Us
       </NavLink>
     </li>
   </>
