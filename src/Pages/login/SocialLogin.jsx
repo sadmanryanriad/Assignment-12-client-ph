@@ -3,18 +3,28 @@ import { FaGoogle } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SocialLogin = () => {
   const { googleLogin } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
 
   const navigate = useNavigate();
 
   const handleButton = () => {
     googleLogin()
-      .then(() => {
+      .then((result) => {
         toast.success("logged in successfully");
-        navigate("/");
-        window.location.reload();
+        //create user info in the database
+        const userInfo = {
+          name: result.user?.displayName,
+          email: result.user?.email,
+        };
+        axiosSecure.post("/users", userInfo).then((res) => {
+          console.log(res.data);
+          navigate("/");
+          // window.location.reload();
+        });
       })
       .catch((error) => {
         toast.success(error.message);

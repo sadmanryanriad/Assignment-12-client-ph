@@ -4,10 +4,12 @@ import { BsCursorText, BsImageFill } from "react-icons/bs";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
 import { uploadImage } from "../../hooks/uploadImage";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Registration = () => {
   const { createUser, handleUpdateProfile } = useContext(AuthContext);
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,15 +30,24 @@ const Registration = () => {
     }
     createUser(email, password)
       .then(() => {
-        
         handleUpdateProfile(name, uploadedImageLink);
+        console.log("updated");
+                  //create user info in the database
+                  const userInfo = {
+                    name: name,
+                    email: email,
+                  }
+                  axiosSecure.post('/users', userInfo)
+                  .then(res=> {
+                    if(res.data.insertedId) console.log('user data inserted into the database');
+                  })
         toast.success("user created successfully!");
         navigate("/");
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((error) => {
         toast.error(error);
-        console.log(error.message);
+        console.log(error);
       });
   };
 
