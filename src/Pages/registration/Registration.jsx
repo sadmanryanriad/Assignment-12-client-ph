@@ -3,15 +3,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { BsCursorText, BsImageFill } from "react-icons/bs";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
+import { uploadImage } from "../../hooks/uploadImage";
 
 const Registration = () => {
   const { createUser, handleUpdateProfile } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
-    const image = e.target.image.value;
+    const image = e.target.image.files[0];
+    const imageData = await uploadImage(image);
+    // console.log(imageData?.data?.display_url);
+    const uploadedImageLink = imageData?.data?.display_url;
     const email = e.target.email.value;
     const password = e.target.password.value;
     if (
@@ -24,7 +28,8 @@ const Registration = () => {
     }
     createUser(email, password)
       .then(() => {
-        handleUpdateProfile(name, image);
+        
+        handleUpdateProfile(name, uploadedImageLink);
         toast.success("user created successfully!");
         navigate("/");
         window.location.reload();
@@ -76,7 +81,7 @@ const Registration = () => {
                 type="text"
                 className="mb-1 text-xs sm:text-sm tracking-wide text-gray-800"
               >
-                Image link:
+                Select Image
               </label>
               <div className="relative">
                 <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-green-400">
@@ -84,8 +89,10 @@ const Registration = () => {
                 </div>
 
                 <input
-                  type="text"
+                required
+                  type="file"
                   name="image"
+                  accept="image/*"
                   className="text-sm sm:text-base placeholder-gray-800 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-green-400  dark:bg-slate-400 "
                   placeholder="Image link"
                 />

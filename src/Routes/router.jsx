@@ -6,6 +6,8 @@ import Login from "../Pages/login/Login";
 import ContactUs from "../Pages/contact/ContactUs";
 import Dashboard from "../Pages/dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import EmployeeList from "../Pages/dashboard/employee-list/EmployeeList";
+import Progress from "../Pages/dashboard/progress/Progress";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,23 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "employee-list",
+        element: <EmployeeList></EmployeeList>
+      },
+      {
+        path: "details/:slug"
+      },
+      {
+        path: "progress",
+        element: <Progress></Progress>
+      }
+    ]
+  }
 ]);
 
 export default router;

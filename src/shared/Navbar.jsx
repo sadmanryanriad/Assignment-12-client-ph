@@ -18,7 +18,7 @@ const menu = (
     </li>
     <li>
       <NavLink
-        to="/dashboard"
+        to="/dashboard/employee-list"
         className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? "active" : ""
         }
