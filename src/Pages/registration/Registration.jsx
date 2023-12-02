@@ -43,7 +43,7 @@ const Registration = () => {
                   })
         toast.success("user created successfully!");
         navigate("/");
-        // window.location.reload();
+        window.location.reload();
       })
       .catch((error) => {
         toast.error(error);

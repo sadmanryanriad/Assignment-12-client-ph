@@ -23,7 +23,7 @@ const SocialLogin = () => {
         axiosSecure.post("/users", userInfo).then((res) => {
           console.log(res.data);
           navigate("/");
-          // window.location.reload();
+          window.location.reload();
         });
       })
       .catch((error) => {
