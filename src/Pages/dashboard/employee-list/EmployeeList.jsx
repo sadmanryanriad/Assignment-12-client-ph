@@ -7,9 +7,10 @@ import { useState } from "react";
 import PayModal from "./PayModal";
 
 const EmployeeList = () => {
-    const [isModalOpen,setIsModalOpen] = useState(false);
-    const [payId, setPayId] = useState();
-    const [paySalary,setPaySalary] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [payId, setPayId] = useState();
+  const [paySalary, setPaySalary] = useState();
+  const [payEmail, setPayEmail] = useState();
   const axiosSecure = useAxiosSecure();
   const { data: employees = [], refetch } = useQuery({
     queryKey: ["employees"],
@@ -34,19 +35,46 @@ const EmployeeList = () => {
       }
     });
   };
-  const openModal = (id,salary)=>{
-    console.log(id, salary);
-    setPayId(id); setPaySalary(salary);
+  const openModal = (id, salary, email) => {
+    // console.log(id, salary);
+    setPayId(id);
+    setPaySalary(salary);
+    setPayEmail(email);
     setIsModalOpen(true);
-  }
-  const closeModal = ()=>{
+  };
+  const closeModal = () => {
     setIsModalOpen(false);
-  }
+  };
   const handlePay = (e) => {
     e.preventDefault();
     const month = e.target.month.value;
     const year = e.target.year.value;
-    console.log(month, year);
+    const transactionInfo = {
+        email: payEmail,
+        salary: parseInt(paySalary),
+        month: month,
+        year: year
+    }
+    axiosSecure.post('/transaction',transactionInfo)
+    .then(res=>{
+        if(res.data.insertedId){
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Paid Successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
+        }
+        if(res.data.message) {
+            // console.log(res.data.message);
+            Swal.fire({
+                icon: "error",
+                title: "Already Paid",
+                text: "You don't want to pay twice, right?",
+              });
+        }
+    })
     closeModal();
   };
 
@@ -90,8 +118,9 @@ const EmployeeList = () => {
                 <td>{employee?.salary}</td>
                 <td>
                   <button
-                    onClick={() => openModal(employee._id, employee.salary)}
+                    onClick={() => openModal(employee._id, employee.salary, employee.email)}
                     className="btn btn-sm bg-green-400"
+                    disabled={!employee?.verified}
                   >
                     Pay
                   </button>
@@ -105,7 +134,14 @@ const EmployeeList = () => {
         </table>
       </div>
       {/* //modal  */}
-      {isModalOpen && <PayModal id={payId} salary={paySalary} handlePay={handlePay} closeModal={closeModal}></PayModal>}
+      {isModalOpen && (
+        <PayModal
+          id={payId}
+          salary={paySalary}
+          handlePay={handlePay}
+          closeModal={closeModal}
+        ></PayModal>
+      )}
     </div>
   );
 };
