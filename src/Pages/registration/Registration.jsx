@@ -20,6 +20,9 @@ const Registration = () => {
     const uploadedImageLink = imageData?.data?.display_url;
     const email = e.target.email.value;
     const password = e.target.password.value;
+    const salary = e.target.salary.value;
+    const designation = e.target.designation.value;
+    const bankAccountNumber = e.target.bankAccountNumber.value;
     if (
       !/^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;<>,.?/~\\-]).{6,}$/.test(password)
     ) {
@@ -36,6 +39,9 @@ const Registration = () => {
                   const userInfo = {
                     name: name,
                     email: email,
+                    designation:designation,
+                    salary: salary,
+                    bankAccountNumber: bankAccountNumber,
                   }
                   axiosSecure.post('/users', userInfo)
                   .then(res=> {
@@ -78,7 +84,6 @@ const Registration = () => {
                 <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-green-400">
                   <BsCursorText></BsCursorText>
                 </div>
-
                 <input
                   type="text"
                   name="name"
@@ -98,7 +103,6 @@ const Registration = () => {
                 <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-green-400">
                   <BsImageFill></BsImageFill>
                 </div>
-
                 <input
                 required
                   type="file"
@@ -130,7 +134,6 @@ const Registration = () => {
                     <path d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
                   </svg>
                 </div>
-
                 <input
                   id="email"
                   type="email"
@@ -141,6 +144,69 @@ const Registration = () => {
                 />
               </div>
             </div>
+
+            {/* designation */}
+            <div className="flex flex-col mb-6">
+            <label
+                type="email"
+                className="mb-1 text-xs sm:text-sm tracking-wide text-gray-800"
+              >
+                Designation:
+              </label>
+              <div className="relative">
+              <select name="designation" className="select select-bordered w-full " required>
+                {/* <option disabled selected>
+                  select a rating
+                </option> */}
+                <option>employee</option>
+                <option>HR</option>
+                <option>admin</option>
+              </select>
+              </div>
+            </div>
+                {/* Bank Account Number */}
+            <div className="flex flex-col mb-6">
+              <label
+                type="text"
+                className="mb-1 text-xs sm:text-sm tracking-wide text-gray-800"
+              >
+                Bank Account Number:
+              </label>
+              <div className="relative">
+                <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-green-400">
+                </div>
+
+                <input
+                  type="number"
+                  name="bankAccountNumber"
+                  required
+                  className="text-sm sm:text-base placeholder-gray-800 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-green-400  dark:bg-slate-400 "
+                  placeholder="bank account number"
+                />
+              </div>
+            </div>
+                {/* Salary */}
+            <div className="flex flex-col mb-6">
+              <label
+                type="text"
+                className="mb-1 text-xs sm:text-sm tracking-wide text-gray-800"
+              >
+                Salary:
+              </label>
+              <div className="relative">
+                <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-green-400">
+                </div>
+
+                <input
+                  type="number"
+                  name="salary"
+                  required
+                  className="text-sm sm:text-base placeholder-gray-800 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-green-400  dark:bg-slate-400 "
+                  placeholder="salary"
+                />
+              </div>
+            </div>
+                {/* password */}
             <div className="flex flex-col mb-6">
               <label
                 type="password"
@@ -175,7 +241,6 @@ const Registration = () => {
                 />
               </div>
             </div>
-
             <div className="flex w-full mt-10">
               <button
                 type="submit"
