@@ -2,7 +2,7 @@ import { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
-import SocialLogin from "./SocialLogin";
+// import SocialLogin from "./SocialLogin";
 
 const Login = () => {
   const navigate = useNavigate("/");
@@ -38,14 +38,14 @@ const Login = () => {
         <div className="font-medium self-center text-xl sm:text-2xl uppercase text-gray-800">
           Login To Your Account
         </div>
-        <SocialLogin></SocialLogin>
+        {/* <SocialLogin></SocialLogin>
         <div className="relative mt-10 h-px ">
           <div className="absolute left-0 top-0 flex justify-center w-full -mt-2">
             <span className=" px-4 text-xs text-gray-800 uppercase font-semibold">
               Or Login With Email
             </span>
           </div>
-        </div>
+        </div> */}
         <div className="mt-10">
           <form onSubmit={handleLogin}>
             <div className="flex flex-col mb-6">
