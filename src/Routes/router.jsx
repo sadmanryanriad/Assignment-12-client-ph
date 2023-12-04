@@ -8,6 +8,9 @@ import Dashboard from "../Pages/dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import Progress from "../Pages/dashboard/progress/Progress";
 import VerifyDesignation from "./VerifyDesignation";
+import PaymentHistory from "../Pages/dashboard/paymentHistory/PaymentHistory";
+import WorkSheet from "../Pages/dashboard/work-sheet/WorkSheet";
+import EmployeeDetails from "../Pages/dashboard/hr/EmployeeDetails";
 
 const router = createBrowserRouter([
   {
@@ -49,7 +52,16 @@ const router = createBrowserRouter([
         element: <VerifyDesignation></VerifyDesignation>
       },
       {
-        path: "details/:slug"
+        path: "payment-history",
+        element: <PaymentHistory></PaymentHistory>
+      },
+      {
+        path: "work-sheet",
+        element: <WorkSheet></WorkSheet>
+      },
+      {
+        path: "details/:id",
+        element: <EmployeeDetails></EmployeeDetails>
       },
       {
         path: "progress",

@@ -12,7 +12,7 @@ const VerifyDesignation = () => {
   const axiosSecure = useAxiosSecure();
 
   // Use state to store the designation
-  const [designation, setDesignation] = useState('');
+  const [designation, setDesignation] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useQuery({
@@ -25,7 +25,7 @@ const VerifyDesignation = () => {
       return res.data;
     },
   });
-console.log(designation);
+  console.log(designation);
   return (
     <div>
       {isLoading ? (
@@ -34,7 +34,7 @@ console.log(designation);
         <div>
           {designation === "admin" && <AllEmployeeList></AllEmployeeList>}
           {designation === "HR" && <EmployeeList></EmployeeList>}
-          {designation === "employee" && <PaymentHistory></PaymentHistory>}
+          {designation === "employee" && <PaymentHistory email={user?.email}></PaymentHistory>}
         </div>
       )}
     </div>

@@ -5,6 +5,7 @@ import Verified from "../../../components/Verified";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import PayModal from "./PayModal";
+import { Link } from "react-router-dom";
 
 const EmployeeList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,31 +51,30 @@ const EmployeeList = () => {
     const month = e.target.month.value;
     const year = e.target.year.value;
     const transactionInfo = {
-        email: payEmail,
-        salary: parseInt(paySalary),
-        month: month,
-        year: year
-    }
-    axiosSecure.post('/transaction',transactionInfo)
-    .then(res=>{
-        if(res.data.insertedId){
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Paid Successfully",
-                showConfirmButton: false,
-                timer: 1500
-              });
-        }
-        if(res.data.message) {
-            // console.log(res.data.message);
-            Swal.fire({
-                icon: "error",
-                title: "Already Paid",
-                text: "You don't want to pay twice, right?",
-              });
-        }
-    })
+      email: payEmail,
+      salary: parseInt(paySalary),
+      month: month,
+      year: year,
+    };
+    axiosSecure.post("/transaction", transactionInfo).then((res) => {
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Paid Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+      if (res.data.message) {
+        // console.log(res.data.message);
+        Swal.fire({
+          icon: "error",
+          title: "Already Paid",
+          text: "You don't want to pay twice, right?",
+        });
+      }
+    });
     closeModal();
   };
 
@@ -118,7 +118,9 @@ const EmployeeList = () => {
                 <td>{employee?.salary}</td>
                 <td>
                   <button
-                    onClick={() => openModal(employee._id, employee.salary, employee.email)}
+                    onClick={() =>
+                      openModal(employee._id, employee.salary, employee.email)
+                    }
                     className="btn btn-sm bg-green-400"
                     disabled={!employee?.verified}
                   >
@@ -126,7 +128,7 @@ const EmployeeList = () => {
                   </button>
                 </td>
                 <td>
-                  <button className="btn btn-sm bg-slate-300">Details</button>
+                  <Link to={`/dashboard/details/${employee._id}`}><button className="btn btn-sm bg-slate-300">Details</button></Link>
                 </td>
               </tr>
             ))}
