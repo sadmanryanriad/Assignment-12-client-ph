@@ -1,12 +1,27 @@
 import Swal from "sweetalert2";
 import Heading from "../../../components/Heading";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
+import WorkSheetTable from "../../../components/WorkSheetTable";
+import Spinner from "../../../components/Spinner";
+import { useQuery } from "@tanstack/react-query";
 
 const WorkSheet = () => {
     const {user, loading} = useContext(AuthContext);
+    const [workSheetData, setWorkSheetData] = useState([]);
     const axiosSecure = useAxiosSecure();
+    // eslint-disable-next-line no-unused-vars
+    const { data: workSheet = [], refetch } = useQuery({
+      queryKey: ["work-sheet-data"],
+      enabled: !loading,
+      queryFn: async () => {
+        const res = await axiosSecure.get(`/work-sheet/${user?.email}`);
+        setWorkSheetData(res.data);
+        return res.data;
+      },
+    });
+    // console.log(workSheetData);
     
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,8 +33,10 @@ const WorkSheet = () => {
     const selectedDate = new Date(date);
     // Get the month name in the format "January", "February", etc.
     const month = selectedDate.toLocaleDateString("en-US", { month: "long" });
-    console.log(task, hour, date, month);
+    // console.log(task, hour, date, month);
     const workInfo = {
+        email: user?.email,
+        name: user?.displayName,
         task: task,
         hour: hour,
         date: date,
@@ -27,7 +44,8 @@ const WorkSheet = () => {
     }
     axiosSecure.post(`work-sheet`, workInfo)
     .then(res=>{
-        console.log(res.data);
+        // console.log(res.data);
+        refetch();
         if(res.data.insertedId) {
             Swal.fire({
                 icon: "success",
@@ -38,9 +56,13 @@ const WorkSheet = () => {
         }
     })
   };
+
+  if(loading) return <Spinner></Spinner>
+
   return (
     <div className="p-5 md:p-10">
       <Heading>Work Sheet</Heading>
+      <WorkSheetTable data={workSheetData}></WorkSheetTable>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col md:flex-row justify-center items-center"
