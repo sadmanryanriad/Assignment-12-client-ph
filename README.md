@@ -10,22 +10,22 @@ admin username: riad@gmail.com
 admin password: 1212@G
 
 
-- **User-Friendly Interface:**
-  - Intuitive design and navigation for a seamless user experience.
-  - Clearly organized layout with easy-to-find information.
+### 404 Page 🚀
+- **Custom 404 Page:** Navigate with ease on our 404 error page, featuring an engaging image or gif and a "Back to home" button for a seamless experience.
 
-- **Rich Content and Resources:**
-  - Engaging and informative content catering to your target audience.
-  - Resources such as articles, guides, or multimedia enhancing user value.
+### User Authentication 📝
+- **User-Friendly Signup:** Register with your email and password to access Alpha Hotel's exclusive features.
+- **Google Authentication:** Seamlessly log in using Google authentication via Firebase.
 
-- **Responsive and Accessible:**
-  - Mobile-friendly design ensuring accessibility across devices.
-  - Compliance with web accessibility standards for an inclusive user experience.
+### Toast Notifications 
+- **User Feedback:** Enhance user experience with toast notifications for all CRUD operations, ensuring users are always in the know.
 
-- **Interactive Features:**
-  - Integration of interactive elements, such as forms, quizzes, or comment sections.
-  - User engagement tools like social media sharing or interactive widgets.
+### Animation
+- **Lottie flies:** Enhance website beauty by using animations.
 
-- **Performance and Speed:**
+### typedjs
+- **awesome effects:** used some awesome effects to look cool. 
+
+### Performance and Speed
   - Optimal website performance with fast loading times.
   - Efficient backend structure and use of modern web technologies.
