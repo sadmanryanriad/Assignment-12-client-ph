@@ -161,7 +161,7 @@ const Registration = () => {
                 </option> */}
                 <option>employee</option>
                 <option>HR</option>
-                <option>admin</option>
+                {/* <option>admin</option> */}
               </select>
               </div>
             </div>
