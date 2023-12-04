@@ -2,7 +2,7 @@
 
 ## Milestone-12 Project
 
-## Explore Employee Management: [Live Link](https:)
+## Explore Employee Management: [Live Link](https://assignment-12-14f39.web.app/)
 
 Welcome to Employee Management.
 
