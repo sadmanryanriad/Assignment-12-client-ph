@@ -112,7 +112,9 @@ const AllEmployeeList = () => {
                 <td>{employee?.salary}</td>
                 <td>{employee?.designation=='HR'? 'HR' : employee?.designation == 'fired'? "fired" : <button onClick={()=>handleMakeHR(employee._id)} className="btn btn-sm bg-success text-white">make HR</button>}</td>
                 <td>
-                  <button onClick={()=>handleFire(employee._id)} disabled={employee?.fired} className="btn btn-sm bg-red-500 text-white">Fire</button>
+                  <button onClick={()=>handleFire(employee._id)} disabled={employee?.fired} className="btn btn-sm bg-red-500 text-white">
+                    {employee?.fired? 'Fired': 'Fire'}
+                    </button>
                 </td>
               </tr>
             ))}
