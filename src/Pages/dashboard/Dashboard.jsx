@@ -38,7 +38,7 @@ const Dashboard = () => {
           {designation === "admin" && (
             <>
             <li>
-              <NavLink to={"/dashboard/all-employee-list"}>
+              <NavLink to={"/dashboard/employee-list"}>
                 All Employee List <FaList />
               </NavLink>
             </li>

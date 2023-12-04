@@ -44,13 +44,18 @@ const Registration = () => {
                     bankAccountNumber: bankAccountNumber,
                     image: uploadedImageLink
                   }
+                  // console.log(userInfo);
                   axiosSecure.post('/users', userInfo)
                   .then(res=> {
+                    console.log('/users posted');
                     if(res.data.insertedId) console.log('user data inserted into the database');
-                  })
-        toast.success("user created successfully!");
-        navigate("/");
+                    console.log(res.data);
+                            navigate("/");
         window.location.reload();
+        toast.success("user created successfully!");
+                  })
+        // navigate("/");
+        // window.location.reload();
       })
       .catch((error) => {
         toast.error(error);

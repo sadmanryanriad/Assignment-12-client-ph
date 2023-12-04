@@ -9,7 +9,7 @@ const Root = () => {
       <Navbar></Navbar>
       <Outlet></Outlet>
       <Footer></Footer>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };
