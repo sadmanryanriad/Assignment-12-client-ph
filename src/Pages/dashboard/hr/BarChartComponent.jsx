@@ -7,7 +7,7 @@ const BarChartComponent = ({email}) => {
     const [data,setData] = useState([]);
     const [loading,setLoading] = useState(true);
     const axiosSecure = useAxiosSecure();
-    const url = `/transaction/${email}`;
+    const url = `/transactions/${email}`;
     useEffect(()=>{
         axiosSecure.get(url)
         .then(res=>{
