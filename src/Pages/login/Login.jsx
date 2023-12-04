@@ -2,11 +2,14 @@ import { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 // import SocialLogin from "./SocialLogin";
 
 const Login = () => {
   const navigate = useNavigate("/");
   const { login } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,7 +23,16 @@ const Login = () => {
       );
       return;
     }
-
+    axiosSecure.get(`/users/fired/${email}`)
+    .then(res=>{
+      if(res.data){
+        Swal.fire({
+          icon: "error",
+          title: "Can't login!",
+          text: "You have been Fired.",
+        });
+        return;
+      }
     login(email, password)
       .then(() => {
         toast.success("log in successful");
@@ -30,6 +42,8 @@ const Login = () => {
       .catch((error) => {
         toast.error(error.message);
       });
+    })
+
   };
 
   return (
