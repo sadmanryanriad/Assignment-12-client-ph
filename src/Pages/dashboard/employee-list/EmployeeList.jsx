@@ -15,7 +15,7 @@ const EmployeeList = () => {
   const { data: employees = [], refetch } = useQuery({
     queryKey: ["employees"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/users");
+      const res = await axiosSecure.get("/employees");
       return res.data;
     },
   });

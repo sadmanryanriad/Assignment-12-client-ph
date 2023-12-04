@@ -6,8 +6,8 @@ import Login from "../Pages/login/Login";
 import ContactUs from "../Pages/contact/ContactUs";
 import Dashboard from "../Pages/dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
-import EmployeeList from "../Pages/dashboard/employee-list/EmployeeList";
 import Progress from "../Pages/dashboard/progress/Progress";
+import VerifyDesignation from "./VerifyDesignation";
 
 const router = createBrowserRouter([
   {
@@ -41,8 +41,12 @@ const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     children: [
       {
+        path: "/dashboard",
+        element: <h2 className="p-10 text-2xl font-semibold">Welcome to Back</h2>
+      },
+      {
         path: "employee-list",
-        element: <EmployeeList></EmployeeList>
+        element: <VerifyDesignation></VerifyDesignation>
       },
       {
         path: "details/:slug"

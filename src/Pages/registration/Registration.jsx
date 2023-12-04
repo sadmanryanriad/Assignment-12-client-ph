@@ -42,6 +42,7 @@ const Registration = () => {
                     designation:designation,
                     salary: salary,
                     bankAccountNumber: bankAccountNumber,
+                    image: uploadedImageLink
                   }
                   axiosSecure.post('/users', userInfo)
                   .then(res=> {
