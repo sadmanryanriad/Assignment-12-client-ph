@@ -11,11 +11,13 @@ import VerifyDesignation from "./VerifyDesignation";
 import PaymentHistory from "../Pages/dashboard/paymentHistory/PaymentHistory";
 import WorkSheet from "../Pages/dashboard/work-sheet/WorkSheet";
 import EmployeeDetails from "../Pages/dashboard/hr/EmployeeDetails";
+import ErrorPage from "../shared/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -41,7 +43,7 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
         path: "/dashboard",
