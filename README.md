@@ -17,15 +17,15 @@ admin password: 1212@G
 - **User-Friendly Signup:** Register with your email and password to access Alpha Hotel's exclusive features.
 - **Google Authentication:** Seamlessly log in using Google authentication via Firebase.
 
-### Toast Notifications 
+### Toast Notifications 🔔
 - **User Feedback:** Enhance user experience with toast notifications for all CRUD operations, ensuring users are always in the know.
 
-### Animation
+### Animation 😃
 - **Lottie flies:** Enhance website beauty by using animations.
 
-### typedjs
+### typedjs 🖋🔥
 - **awesome effects:** used some awesome effects to look cool. 
 
-### Performance and Speed
+### Performance and Speed 🚀 
   - Optimal website performance with fast loading times.
   - Efficient backend structure and use of modern web technologies.
