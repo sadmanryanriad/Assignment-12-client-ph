@@ -6,32 +6,42 @@ import WorkSheetTable from "../../../components/WorkSheetTable";
 
 const Progress = () => {
   const [workSheetData, setWorkSheetData] = useState([]);
+  const [allList, setAllList] = useState([]);
   const [isloading, setIsLoading] = useState(true);
-  const [sortName, setSortName] = useState("");
-  const [sortMonth, setSortMonth] = useState("");
+  const [sortEmail, setSortEmail] = useState("");
+  const [selectedMonth, setSelectedMonth] = useState(""); 
   const axiosSecure = useAxiosSecure();
+  
+  useEffect(()=>{
+    axiosSecure.get('/work-sheet')
+    .then(res=>{
+      setAllList(res.data);
+    })
+  },[axiosSecure])
 
-  useEffect(() => {
-    let apiUrl = `/work-sheet/${sortName}`;
-    
-    // If a month is selected, add it to the API URL
-    if (sortMonth) {
-      apiUrl += `/${sortMonth}`;
-    }
-
-    axiosSecure.get(apiUrl).then((res) => {
+  useEffect(()=>{
+    let apiUrl = `/work-sheet?email=${sortEmail}&month=${selectedMonth}`;
+    console.log(apiUrl);
+    axiosSecure.get(apiUrl)
+    .then(res=>{
       setWorkSheetData(res.data);
       setIsLoading(false);
-    });
-  }, [axiosSecure, sortName, sortMonth]);
+    })
+  },[axiosSecure, selectedMonth, sortEmail])
 
-  const handleSortedName = (e) => {
-    setSortName(e.target.value);
+
+
+  const handleSortedEmail = (e) => {
+    setSortEmail(e.target.value);
   };
 
   const handleSortedMonth = (e) => {
-    setSortMonth(e.target.value);
+    setSelectedMonth(e.target.value);
   };
+
+  const names = new Set(allList.map(item=>item.email));
+  const namesArray = [...names]
+  console.log(namesArray);
 
   if (isloading) return <Spinner></Spinner>;
 
@@ -44,16 +54,16 @@ const Progress = () => {
           <label>Name:</label>
           <select
             className="select select-bordered w-full max-w-xs dark:bg-gray-700"
-            onChange={handleSortedName}
+            onChange={handleSortedEmail}
           >
             <option value="">All</option>
-            <option value="talha@gmail.com">talha</option>
-            <option value="baby@gmail.com">baby</option>
+            {namesArray?.map(name=><option key={name} value={name}>{name}</option>)}
           </select>
           <label>Month:</label>
           <select
             className="select select-bordered w-full max-w-xs dark:bg-gray-700"
             onChange={handleSortedMonth}
+            value={selectedMonth}
           >
             <option value="">All</option>
             <option value="January">January</option>

@@ -16,7 +16,7 @@ const WorkSheet = () => {
       queryKey: ["work-sheet-data"],
       enabled: !loading,
       queryFn: async () => {
-        const res = await axiosSecure.get(`/work-sheet/${user?.email}`);
+        const res = await axiosSecure.get(`/work-sheet?email=${user?.email}`);
         setWorkSheetData(res.data);
         return res.data;
       },

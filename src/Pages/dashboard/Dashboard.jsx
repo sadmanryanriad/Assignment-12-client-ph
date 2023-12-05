@@ -25,7 +25,7 @@ const Dashboard = () => {
       return res.data;
     },
   });
-  console.log(isLoading);
+  // console.log(isLoading);
   console.log(designation);
 
   return (
